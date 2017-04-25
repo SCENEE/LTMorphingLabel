@@ -34,9 +34,11 @@ class LTDemoViewController : UIViewController, LTMorphingLabelDelegate {
     }
 
     @IBOutlet fileprivate var label: LTMorphingLabel!
+    
     @IBAction func changeText(_ sender: AnyObject) {
         label.text = text
     }
+    
     @IBAction func segmentChanged(_ sender: UISegmentedControl) {
         let seg = sender
         if let effect = LTMorphingEffect(rawValue: seg.selectedSegmentIndex) {
@@ -54,7 +56,6 @@ class LTDemoViewController : UIViewController, LTMorphingLabelDelegate {
     @IBAction func changeFontSize(_ sender: UISlider) {
         label.font = UIFont.init(name: label.font.fontName, size: CGFloat(sender.value))
         label.text = label.text
-        label.setNeedsDisplay()
     }
 }
 

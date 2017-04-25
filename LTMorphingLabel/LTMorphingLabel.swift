@@ -48,12 +48,9 @@ fileprivate func >= <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
   }
 }
 
-
-
 enum LTMorphingPhases: Int {
     case start, appear, disappear, draw, progress, skipFrames
 }
-
 
 typealias LTMorphingStartClosure =
     (Void) -> Void
@@ -70,13 +67,11 @@ typealias LTMorphingManipulateProgressClosure =
 typealias LTMorphingSkipFramesClosure =
     (Void) -> Int
 
-
 @objc public protocol LTMorphingLabelDelegate {
     @objc optional func morphingDidStart(_ label: LTMorphingLabel)
     @objc optional func morphingDidComplete(_ label: LTMorphingLabel)
     @objc optional func morphingOnProgress(_ label: LTMorphingLabel, progress: Float)
 }
-
 
 // MARK: - LTMorphingLabel
 @IBDesignable open class LTMorphingLabel: UILabel {
@@ -85,6 +80,7 @@ typealias LTMorphingSkipFramesClosure =
     @IBInspectable open var morphingDuration: Float = 0.6
     @IBInspectable open var morphingCharacterDelay: Float = 0.026
     @IBInspectable open var morphingEnabled: Bool = true
+
     @IBOutlet open weak var delegate: LTMorphingLabelDelegate?
     open var morphingEffect: LTMorphingEffect = .scale
     
@@ -238,8 +234,8 @@ extension LTMorphingLabel {
         charHeight = "Leg".size(attributes: [NSFontAttributeName: font]).height
         
         let topOffset = (bounds.size.height - charHeight) / 2.0
-        
-        for (_, char) in textToDraw.characters.enumerated() {
+
+        for char in textToDraw.characters {
             let charSize = String(char).size(attributes: [NSFontAttributeName: font])
             charRects.append(
                 CGRect(
@@ -430,7 +426,6 @@ extension LTMorphingLabel {
     }
 
 }
-
 
 // MARK: - Drawing extension
 extension LTMorphingLabel {
